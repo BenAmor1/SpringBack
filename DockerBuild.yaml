@@ -31,16 +31,5 @@
   - name: Maven cpying all jar to our nexus remote repo
     shell: cd /tmp/springback && mvn -Dmaven.test.skip=true deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=Miniprojet -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://172.29.50.249:8081/repository/maven-releases/ -Dfile=target/MiniProjet-1.0.jar 
        
-  - name: Build the Docker image
-    shell: cd /tmp/springback && docker build . -t springback/image
-  
-  - name: Tag the image
-    shell: docker tag springback/image beffa/project_pfe-2022:springbackv1
-  
-  - name: Push the image to Docker Hub
-    shell: docker push beffa/project_pfe-2022:springbackv1
-        
-  - name: Delete Directory
-    file:
-      path: /tmp/springback
-      state: absent
+  - name: run maven Project
+    shell: mvn mvn spring-boot:run

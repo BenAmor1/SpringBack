@@ -7,8 +7,8 @@
  
   - name: Copy directory from Ansible server to remote host
     copy:
-      src: /var/lib/awx/projects/_80__springback_project
-      dest: /tmp/springback
+      src: /var/lib/awx/projects/_80__springback_project/
+      dest: /tmp/springback/
       
   - name: Maven Cleaning traget directory
     shell: cd /tmp/springback && mvn clean

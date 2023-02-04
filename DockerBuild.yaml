@@ -7,32 +7,32 @@
  
   - name: Copy directory from Ansible server to remote host
     copy:
-      src: /var/lib/awx/projects/
-      dest: /tmp
+      src: /var/lib/awx/projects/_80__springback_project
+      dest: /tmp/springback
       
   - name: Maven Cleaning traget directory
-    shell: cd /tmp/react_front/ && mvn clean
+    shell: cd /tmp/springback && mvn clean
   
   - name: Creating Classes extension
-    shell: cd /tmp/react_front/ && mvn compile
+    shell: cd /tmp/springback && mvn compile
   
   - name: MVN TEST Junit
-    shell: cd /tmp/react_front/ && mvn test
+    shell: cd /tmp/springback && mvn test
     
   - name: Sending code to Sonar
-    shell: cd /tmp/react_front/ && mvn sonar:sonar
+    shell: cd /tmp/springback && mvn sonar:sonar
     
   - name: Maven creating target directory also creating .jar deliverable
-    shell: cd /tmp/react_front/ && mvn package -Dmaven.test.skip=true
+    shell: cd /tmp/springback && mvn package -Dmaven.test.skip=true
     
   - name: Maven cpying all jar to our local repo
-    shell: cd /tmp/react_front/ && mvn install -Dmaven.test.skip=true
+    shell: cd /tmp/springback && mvn install -Dmaven.test.skip=true
     
   - name: Maven cpying all jar to our nexus remote repo
-    shell: cd /tmp/react_front/ && mvn -Dmaven.test.skip=true deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=Miniprojet -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://172.29.50.249:8081/repository/maven-releases/ -Dfile=target/MiniProjet-1.0.jar 
+    shell: cd /tmp/springback && mvn -Dmaven.test.skip=true deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=Miniprojet -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://172.29.50.249:8081/repository/maven-releases/ -Dfile=target/MiniProjet-1.0.jar 
        
   - name: Build the Docker image
-    shell: cd /tmp/react_front/ && docker build . -t springback/image
+    shell: cd /tmp/springback && docker build . -t springback/image
   
   - name: Tag the image
     shell: docker tag springback/image beffa/project_pfe-2022:springbackv1
@@ -42,5 +42,5 @@
         
   - name: Delete Directory
     file:
-      path: /tmp/react_front/
+      path: /tmp/springback
       state: absent

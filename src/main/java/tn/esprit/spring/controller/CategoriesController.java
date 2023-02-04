@@ -23,7 +23,7 @@ import tn.esprit.spring.dto.CategoriesDTO;
 import tn.esprit.spring.entites.Categories;
 import tn.esprit.spring.repository.CategorieRepository;
 import tn.esprit.spring.service.ICategorie;
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://172.29.50.239:4200")
 @RestController
 public class CategoriesController {
 	@Autowired 

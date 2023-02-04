@@ -25,7 +25,7 @@ import tn.esprit.spring.entites.Produits;
 import tn.esprit.spring.repository.CategorieRepository;
 import tn.esprit.spring.repository.ProduitRepository;
 import tn.esprit.spring.service.IProduit;
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://172.29.50.239:4200")
 @RestController
 public class ProduitsController {
 	@Autowired 

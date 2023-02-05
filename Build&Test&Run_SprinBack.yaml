@@ -32,7 +32,9 @@
       mvn compile
   
   - name: MVN TEST Junit
-    shell: cd /SpringBack && mvn test
+    shell: |
+      cd /SpringBack 
+      mvn test
     
   - name: Sending code to Sonar
     shell: cd /SpringBack && mvn sonar:sonar

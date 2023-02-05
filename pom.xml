@@ -1,65 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>tn.esprit.spring</groupId>
-	<artifactId>MiniProjet</artifactId>
-	<version>1.0</version>
-	<name>MiniProjet</name>
-	<description>spring-boot-data-jpa-entity</description>
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
+        <parent>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>2.5.1</version>
+                <relativePath/> <!-- lookup parent from repository -->
+        </parent>
+        <groupId>tn.esprit.spring</groupId>
+        <artifactId>MiniProjet</artifactId>
+        <version>1.0</version>
+        <name>MiniProjet</name>
+        <description>spring-boot-data-jpa-entity</description>
 
-	<properties>
-		<java.version>1.8</java.version>
-			<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-			  <sonar.host.url>http://172.29.50.249:9000</sonar.host.url>
-			    <sonar.login>admin</sonar.login>
-  				<sonar.password>admin</sonar.password>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+        <properties>
+                <java.version>1.8</java.version>
+                        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+                          <sonar.host.url>http://172.29.50.249:9000</sonar.host.url>
+                            <sonar.login>admin</sonar.login>
+                                <sonar.password>admin</sonar.password>
+        <start-class>tn.esprit.spring.MiniProjetApplication</start-class>
+        </properties>
+        <dependencies>
+                <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-data-jpa</artifactId>
+                </dependency>
+                <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-web</artifactId>
+                </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			 <exclusions>
+                <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-devtools</artifactId>
+                        <scope>runtime</scope>
+                        <optional>true</optional>
+                </dependency>
+                <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-test</artifactId>
+                        <scope>test</scope>
+                         <exclusions>
         <exclusion>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
         </exclusion>
     </exclusions>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
+                </dependency>
+                <dependency>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                        <version>4.12</version>
+                        <scope>test</scope>
+                </dependency>
+                <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
      <version>1.18.16</version>
@@ -70,52 +71,54 @@
             <artifactId>modelmapper</artifactId>
             <version>1.1.0</version>
          </dependency>
-       
-   
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
 
-	</dependencies>
 
-	<build>
-	<pluginManagement>
-		<plugins>
+                <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <scope>runtime</scope>
+                </dependency>
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter</artifactId>
+  <version>2.4.0</version>
+</dependency>
 
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-jar-plugin</artifactId>
-      <version>3.2.0</version>
-      <configuration>
-        <archive>
-          <manifest>
+        </dependencies>
+
+        <build>
+        <pluginManagement>
+                <plugins>
+
+                        <plugin>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-maven-plugin</artifactId>
+                                <configuration>
             <mainClass>tn.esprit.spring.MiniProjetApplication</mainClass>
-          </manifest>
-        </archive>
-      </configuration>
-    </plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
+            <layout>JAR</layout>
+                                        <excludes>
+                                                <exclude>
+                                                        <groupId>org.projectlombok</groupId>
+                                                        <artifactId>lombok</artifactId>
+                                                </exclude>
+                                        </excludes>
+                                </configuration>
+<executions>
+    <execution>
+        <goals>
+            <goal>repackage</goal>
+        </goals>
+    </execution>
+</executions>
+                        </plugin>
+                        <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>6.7.7</version>
             </plugin>
-		</plugins>
-		</pluginManagement>
-	</build>
+                </plugins>
+                </pluginManagement>
+        </build>
 <!-- Deploy to Nexus -->
 <distributionManagement>
 <repository>

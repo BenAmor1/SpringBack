@@ -43,4 +43,4 @@
     shell: cd /SpringBack && mvn -Dmaven.test.skip=true deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=Miniprojet -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://172.29.50.249:8081/repository/maven-releases/ -Dfile=target/MiniProjet-1.0.jar 
        
   - name: run maven Project
-    shell: cd /SpringBack && mvn mvn spring-boot:run
+    shell: cd /SpringBack && mvn spring-boot:run

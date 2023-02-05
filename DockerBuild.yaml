@@ -4,32 +4,43 @@
   become: yes
   
   tasks:
- 
-  - name: Copy directory from Ansible server to remote host
-    copy:
-      src: /var/lib/awx/projects/_80__springback_project/
-      dest: /tmp/springback/
+   
+  - name: Check if directory exists
+    stat:
+      path: /SpringBack
+    register: repo_stat
+
+  - name: Clone repository
+    shell: |
+      git clone https://github.com/BenAmor1/SpringBack.git 
+    when: repo_stat.stat.exists == False
+
+  - name: Pull repository
+    shell: |
+      cd /SpringBack
+      git pull 
+    when: repo_stat.stat.exists == True
       
   - name: Maven Cleaning traget directory
-    shell: cd /tmp/springback && mvn clean
+    shell: cd /SpringBack && mvn clean
   
   - name: Creating Classes extension
-    shell: cd /tmp/springback && mvn compile
+    shell: cd /SpringBack && mvn compile
   
   - name: MVN TEST Junit
-    shell: cd /tmp/springback && mvn test
+    shell: cd /SpringBack && mvn test
     
   - name: Sending code to Sonar
-    shell: cd /tmp/springback && mvn sonar:sonar
+    shell: cd /SpringBack && mvn sonar:sonar
     
   - name: Maven creating target directory also creating .jar deliverable
-    shell: cd /tmp/springback && mvn package -Dmaven.test.skip=true
+    shell: cd /SpringBack && mvn package -Dmaven.test.skip=true
     
   - name: Maven cpying all jar to our local repo
-    shell: cd /tmp/springback && mvn install -Dmaven.test.skip=true
+    shell: cd /SpringBack && mvn install -Dmaven.test.skip=true
     
   - name: Maven cpying all jar to our nexus remote repo
-    shell: cd /tmp/springback && mvn -Dmaven.test.skip=true deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=Miniprojet -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://172.29.50.249:8081/repository/maven-releases/ -Dfile=target/MiniProjet-1.0.jar 
+    shell: cd /SpringBack && mvn -Dmaven.test.skip=true deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=Miniprojet -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://172.29.50.249:8081/repository/maven-releases/ -Dfile=target/MiniProjet-1.0.jar 
        
   - name: run maven Project
-    shell: mvn mvn spring-boot:run
+    shell: cd /SpringBack && mvn mvn spring-boot:run

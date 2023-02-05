@@ -12,7 +12,7 @@
 
   - name: Clone repository
     shell: |
-      git clone https://github.com/BenAmor1/SpringBack.git 
+      git clone https://github.com/BenAmor1/SpringBack.git /SpringBack
     when: repo_stat.stat.exists == False
 
   - name: Pull repository

@@ -22,10 +22,14 @@
     when: repo_stat.stat.exists == True
       
   - name: Maven Cleaning traget directory
-    shell: cd /SpringBack && mvn clean
+    shell: |
+      cd /SpringBack 
+      mvn clean
   
   - name: Creating Classes extension
-    shell: cd /SpringBack && mvn compile
+    shell: | 
+      cd /SpringBack 
+      mvn compile
   
   - name: MVN TEST Junit
     shell: cd /SpringBack && mvn test

@@ -62,7 +62,9 @@
       mvn package spring-boot:repackage
       
   - name: Build the Docker image
-    shell: docker build . -t springback/image
+    shell: | 
+      cd /SpringBack
+      docker build . -t springback/image
    
   - name: Tag the image
     shell: docker tag springback/image beffa/project_pfe-2022:springsack_v1

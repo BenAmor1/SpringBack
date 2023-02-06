@@ -2,7 +2,6 @@
 - name: Build Test & Run Maven Project
   hosts: all
   become: true
-  
   tasks:
    
   - name: Check if directory exists
@@ -67,10 +66,10 @@
       docker build . -t springback/image
    
   - name: Tag the image
-    shell: docker tag springback/image beffa/project_pfe-2022:springsack_v1
+    shell: docker tag springback/image beffa/project_pfe-2022:springback_v1
   
   - name: Push the image to Docker Hub
-    shell: docker push beffa/project_pfe-2022:springsack_v1
+    shell: docker push beffa/project_pfe-2022:springback_v1
     
   - name: delete localfile
     shell: docker rmi $(docker images -aq) -f

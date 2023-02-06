@@ -62,14 +62,14 @@
       mvn package spring-boot:repackage
       
   - name: Build the Docker image
-    shell: docker build . -t SpringBack/image
+    shell: docker build . -t springback/image
    
   - name: Tag the image
-    shell: docker tag SpringBack/image beffa/project_pfe-2022:SpringBack_V1
+    shell: docker tag springback/image beffa/project_pfe-2022:springsack_v1
   
   #push image to docker inventory
   - name: Push the image to Docker Hub
-    shell: docker push beffa/project_pfe-2022:SpringBack_V1
+    shell: docker push beffa/project_pfe-2022:springsack_v1
     
   - name: delete localfile
     shell: docker rmi $(docker images -aq) -f

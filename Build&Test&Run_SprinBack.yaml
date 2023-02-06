@@ -1,6 +1,6 @@
 ---
 - name: Build Test & Run Maven Project
-  hosts: {{ host }}
+  hosts: all
   become: true
   
   tasks:

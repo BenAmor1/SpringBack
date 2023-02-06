@@ -1,5 +1,5 @@
 ---
-- name: Build and push Docker images
+- name: Build Test & Run Maven Project
   hosts: all
   become: yes
   
@@ -52,7 +52,26 @@
       mvn install -Dmaven.test.skip=true
     
   - name: Maven cpying all jar to our nexus remote repo
-    shell: cd /SpringBack && mvn -Dmaven.test.skip=true deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=Miniprojet -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://172.29.50.249:8081/repository/maven-releases/ -Dfile=target/MiniProjet-1.0.jar 
+    shell: | 
+      cd /SpringBack 
+      mvn -Dmaven.test.skip=true deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=Miniprojet -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://172.29.50.249:8081/repository/maven-releases/ -Dfile=target/MiniProjet-1.0.jar 
        
-  - name: run maven Project
-    shell: cd /SpringBack && mvn spring-boot:run
+  - name: Create maven Delivrable
+    shell: | 
+      cd /SpringBack 
+      mvn package spring-boot:repackage
+      
+  - name: Build the Docker image
+    shell: docker build . -t SpringBack/image
+   
+  - name: Tag the image
+    shell: docker tag SpringBack/image beffa/project_pfe-2022:SpringBack_V1
+  
+  #push image to docker inventory
+  - name: Push the image to Docker Hub
+    shell: docker push beffa/project_pfe-2022:SpringBack_V1
+    
+  - name: delete localfile
+    shell: docker rmi $(docker images -aq) -f
+    
+      

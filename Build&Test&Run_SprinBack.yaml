@@ -71,8 +71,6 @@
   
   - name: Push the image to Docker Hub
     shell: docker push beffa/project_pfe-2022:springback_v1
-    
-  - name: delete localfile
-    shell: docker rmi $(docker images -aq) -f
+
     
       
